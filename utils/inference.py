@@ -143,6 +143,7 @@ def show_result(img,
 
     return img
 
+
 def show_result_pyplot(model,
                        img,
                        result,
@@ -174,3 +175,23 @@ def show_result_pyplot(model,
         wait_time=wait_time,
         out_file=out_file)
 
+
+# 仅保存结果图片，不打开图片弹窗
+def save_result_pyplot(model,
+                       img,
+                       result,
+                       fig_size=(15, 10),
+                       title='result',
+                       wait_time=0,
+                       out_file=None):
+
+    if hasattr(model, 'module'):
+        model = model.module
+    show_result(
+    img,
+    result,
+    show=False,
+    fig_size=fig_size,
+    win_name=title,
+    wait_time=wait_time,
+    out_file=out_file)
