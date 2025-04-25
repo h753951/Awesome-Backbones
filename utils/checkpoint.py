@@ -214,7 +214,12 @@ def load_checkpoint(model,
     """
     if not os.path.isfile(filename):
         raise FileNotFoundError(f'{filename} can not be found.')
-    checkpoint = torch.load(filename, map_location)
+    
+    # checkpoint = torch.load(filename, map_location)
+    
+    # 设置 weights_only=False
+    checkpoint = torch.load(filename, map_location, weights_only=False)
+    
     # OrderedDict is a subclass of dict
     if not isinstance(checkpoint, dict):
         raise RuntimeError(
